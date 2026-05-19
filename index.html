@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MindSpark ✨</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+color:white;
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e293b,
+#2563eb,
+#38bdf8
+);
+
+background-size:400% 400%;
+
+animation:bgMove 12s ease infinite;
+
+transition:1s;
+
+}
+
+@keyframes bgMove{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
+}
+
+.overlay{
+
+padding:30px;
+
+position:relative;
+
+min-height:100vh;
+
+}
+
+.glow{
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(25px);
+
+opacity:0.5;
+
+pointer-events:none;
+
+}
+
+.glow1{
+
+width:260px;
+
+height:260px;
+
+background:#38bdf8;
+
+top:20px;
+
+left:40px;
+
+}
+
+.glow2{
+
+width:220px;
+
+height:220px;
+
+background:#60a5fa;
+
+bottom:50px;
+
+right:80px;
+
+}
+
+.container{
+
+max-width:850px;
+
+margin:auto;
+
+margin-top:60px;
+
+padding:35px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(12px);
+
+box-shadow:0 0 25px rgba(0,0,0,0.3);
+
+text-align:center;
+
+position:relative;
+
+z-index:2;
+
+}
+
+h1{
+
+font-size:55px;
+
+margin-bottom:30px;
+
+}
+
+.mood-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-bottom:30px;
+
+position:relative;
+
+z-index:999;
+
+}
+
+.mood-buttons button{
+
+padding:15px 24px;
+
+border:none;
+
+border-radius:16px;
+
+cursor:pointer;
+
+font-size:18px;
+
+font-weight:bold;
+
+background:white;
+
+color:#111;
+
+transition:0.3s;
+
+}
+
+.mood-buttons button:hover{
+
+transform:scale(1.08);
+
+}
+
+#quote{
+
+font-size:30px;
+
+font-weight:bold;
+
+margin-top:20px;
+
+min-height:70px;
+
+}
+
+.breathing-box{
+
+display:none;
+
+margin-top:35px;
+
+}
+
+.breathing-circle{
+
+width:180px;
+
+height:180px;
+
+border-radius:50%;
+
+margin:auto;
+
+background:radial-gradient(circle,#38bdf8,#2563eb);
+
+animation:breathe 4s infinite;
+
+}
+
+@keyframes breathe{
+
+0%{
+transform:scale(0.8);
+}
+
+50%{
+transform:scale(1);
+}
+
+100%{
+transform:scale(0.8);
+}
+
+}
+
+.game-card{
+
+margin:40px auto;
+
+width:320px;
+
+padding:25px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,0.1);
+
+backdrop-filter:blur(10px);
+
+}
+
+.game-card button{
+
+padding:12px 20px;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+font-size:16px;
+
+font-weight:bold;
+
+}
+
+.music-panel{
+
+position:fixed;
+
+top:10px;
+
+right:10px;
+
+width:260px;
+
+padding:15px;
+
+border-radius:20px;
+
+background:rgba(0,0,0,0.35);
+
+backdrop-filter:blur(10px);
+
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+
+z-index:9999;
+
+}
+
+.music-panel input{
+
+width:100%;
+
+}
+
+.music-panel button{
+
+width:100%;
+
+padding:10px;
+
+margin-top:10px;
+
+border:none;
+
+border-radius:10px;
+
+font-size:16px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.music-panel p{
+
+margin-top:10px;
+
+font-size:14px;
+
+text-align:center;
+
+}
+
+.music-panel audio{
+
+width:100%;
+
+margin-top:10px;
+
+}
+
+.chat-box{
+
+position:fixed;
+
+top:250px;
+
+right:0px;
+
+width:300px;
+
+padding:20px;
+
+border-radius:20px;
+
+background:rgba(0,0,0,0.35);
+
+backdrop-filter:blur(10px);
+
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+
+z-index:9999;
+
+}
+
+.chat-box input{
+
+width:72%;
+
+padding:12px;
+
+border:none;
+
+border-radius:10px;
+
+margin-top:10px;
+
+}
+
+.chat-box button{
+
+padding:12px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+#chatReply{
+
+margin-top:15px;
+
+font-size:18px;
+
+font-weight:bold;
+
+}
+
+.effect{
+
+position:fixed;
+
+font-size:35px;
+
+animation:floatEffect 4s linear forwards;
+
+pointer-events:none;
+
+z-index:1;
+
+}
+
+@keyframes floatEffect{
+
+0%{
+
+transform:translateY(0px);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-150px);
+
+opacity:0;
+
+}
+
+}
+
+.happy-theme{
+
+background:linear-gradient(
+135deg,
+#facc15,
+#fb7185,
+#f97316
+);
+
+background-size:400% 400%;
+
+animation:bgMove 8s ease infinite;
+
+}
+
+.sad-theme{
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e3a8a,
+#2563eb
+);
+
+background-size:400% 400%;
+
+animation:bgMove 10s ease infinite;
+
+}
+
+.angry-theme{
+
+background:linear-gradient(
+135deg,
+#7f1d1d,
+#dc2626,
+#f97316
+);
+
+background-size:400% 400%;
+
+animation:bgMove 6s ease infinite;
+
+}
+
+.motivation-theme{
+
+background:linear-gradient(
+135deg,
+#f97316,
+#facc15,
+#fb7185
+);
+
+background-size:400% 400%;
+
+animation:bgMove 8s ease infinite;
+
+}
+
+.tired-theme{
+
+background:linear-gradient(
+135deg,
+#111827,
+#312e81,
+#6366f1
+);
+
+background-size:400% 400%;
+
+animation:bgMove 12s ease infinite;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<div class="music-panel">
+
+<input
+type="file"
+id="musicUpload"
+accept="audio/*">
+
+<button onclick="uploadMusic()">
+🎵 Upload
+</button>
+
+<button onclick="removeMusic()">
+❌ Remove
+</button>
+
+<p id="musicName">
+No Music Selected
+</p>
+
+<audio
+id="audioPlayer"
+controls>
+</audio>
+
+</div>
+
+<div class="chat-box">
+
+<h2>
+AI Friend 🤖
+</h2>
+
+<input
+type="text"
+id="userMessage"
+placeholder="Tell me your feelings...">
+
+<button onclick="sendMessage()">
+Send
+</button>
+
+<div id="chatReply">
+</div>
+
+</div>
+
+<div class="container">
+
+<h1>
+MindSpark ✨
+</h1>
+
+<div class="mood-buttons">
+
+<button onclick="setMood('happy')">
+😄 Happy
+</button>
+
+<button onclick="setMood('sad')">
+😢 Sad
+</button>
+
+<button onclick="setMood('angry')">
+😡 Angry
+</button>
+
+<button onclick="setMood('motivation')">
+🔥 Motivation
+</button>
+
+<button onclick="setMood('tired')">
+🌙 Tired
+</button>
+
+</div>
+
+<div id="quote">
+Choose Your Mood 💙
+</div>
+
+<div
+class="breathing-box"
+id="breathingBox">
+
+<h2 id="breathText">
+Breathe In 🌬️
+</h2>
+
+<div class="breathing-circle">
+</div>
+
+</div>
+
+<div class="game-card">
+
+<h2>
+Mini Relax Game 🎮
+</h2>
+
+<p id="score">
+Score: 0
+</p>
+
+<button onclick="popBubble()">
+Pop Bubble 🫧
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const quotes = {
+
+happy:[
+"Keep Smiling 😄",
+"Smile with happy tears 🥹",
+"You deserve happiness ✨"
+],
+
+sad:[
+"Everything will be okay 💙",
+"You are stronger than you think 🌈",
+"Take a deep breath 🌿"
+],
+
+angry:[
+"Calm mind wins 💪",
+"Breathe slowly 🌿",
+"Peace is power 💙"
+],
+
+motivation:[
+"YOU CAN DO IT 🔥",
+"Never give up 🚀",
+"Discipline beats excuses 😎"
+],
+
+tired:[
+"Take some rest 🌙",
+"Relax your mind 💙",
+"Peace begins with sleep 😴"
+]
+
+};
+
+function setMood(mood){
+
+document.body.className = "";
+
+document.body.classList.add(
+mood + "-theme"
+);
+
+const quote =
+quotes[mood][
+Math.floor(
+Math.random() *
+quotes[mood].length
+)
+];
+
+document.getElementById(
+"quote"
+).innerHTML = quote;
+
+const breathingBox =
+document.getElementById(
+"breathingBox"
+);
+
+if(
+mood === "sad" ||
+mood === "angry"
+){
+
+breathingBox.style.display =
+"block";
+
+}else{
+
+breathingBox.style.display =
+"none";
+
+}
+
+if(mood==="happy"){
+createHappyEffect();
+}
+
+if(mood==="sad"){
+createSadEffect();
+}
+
+if(mood==="angry"){
+createAngryEffect();
+}
+
+if(mood==="motivation"){
+createMotivationEffect();
+}
+
+if(mood==="tired"){
+createTiredEffect();
+}
+
+}
+
+let breathe = true;
+
+setInterval(()=>{
+
+document.getElementById(
+"breathText"
+).innerHTML =
+
+breathe ?
+
+"Breathe In 🌬️"
+
+:
+
+"Breathe Out 🍃";
+
+breathe = !breathe;
+
+},4000);
+
+let score = 0;
+
+function popBubble(){
+
+score++;
+
+document.getElementById(
+"score"
+).innerHTML =
+"Score: " + score;
+
+}
+
+function uploadMusic(){
+
+const input =
+document.getElementById(
+"musicUpload"
+);
+
+const file = input.files[0];
+
+if(file){
+
+const url =
+URL.createObjectURL(file);
+
+const player =
+document.getElementById(
+"audioPlayer"
+);
+
+player.src = url;
+
+player.play();
+
+document.getElementById(
+"musicName"
+).innerHTML =
+file.name;
+
+}
+
+}
+
+function removeMusic(){
+
+const player =
+document.getElementById(
+"audioPlayer"
+);
+
+player.pause();
+
+player.src = "";
+
+document.getElementById(
+"musicName"
+).innerHTML =
+"No Music Selected";
+
+}
+
+function sendMessage(){
+
+const msg =
+document.getElementById(
+"userMessage"
+).value.toLowerCase();
+
+const reply =
+document.getElementById(
+"chatReply"
+);
+
+if(
+msg.includes("sad") ||
+msg.includes("cry")
+){
+
+reply.innerHTML =
+"I am here for you 💙";
+
+createSadEffect();
+
+}
+
+else if(
+msg.includes("angry") ||
+msg.includes("stress")
+){
+
+reply.innerHTML =
+"Take a deep breath 🌿";
+
+createAngryEffect();
+
+}
+
+else if(
+msg.includes("happy")
+){
+
+reply.innerHTML =
+"Yayyyy 😄✨";
+
+createHappyEffect();
+
+}
+
+else{
+
+reply.innerHTML =
+"You matter 💖";
+
+}
+
+}
+
+function createHappyEffect(){
+
+const emojis = [
+"😄",
+"🥹",
+"✨",
+"💖",
+"🎈",
+"🌈"
+];
+
+createEffect(emojis,30);
+
+}
+
+function createSadEffect(){
+
+const emojis = [
+"💧",
+"🌧️",
+"🥺",
+"💙"
+];
+
+createEffect(emojis,30);
+
+}
+
+function createAngryEffect(){
+
+const emojis = [
+"🔥",
+"😡",
+"⚡",
+"💢"
+];
+
+createEffect(emojis,25);
+
+}
+
+function createMotivationEffect(){
+
+const emojis = [
+"🔥",
+"🚀",
+"✨",
+"🏆",
+"😎"
+];
+
+createEffect(emojis,30);
+
+}
+
+function createTiredEffect(){
+
+const emojis = [
+"🌙",
+"⭐",
+"😴",
+"💤",
+"✨"
+];
+
+createEffect(emojis,30);
+
+}
+
+function createEffect(emojis,count){
+
+for(let i=0;i<count;i++){
+
+const emoji =
+document.createElement(
+"div"
+);
+
+emoji.innerHTML =
+
+emojis[
+Math.floor(
+Math.random() *
+emojis.length
+)
+];
+
+emoji.classList.add(
+"effect"
+);
+
+emoji.style.left =
+Math.random()*100+"vw";
+
+emoji.style.top =
+Math.random()*100+"vh";
+
+document.body.appendChild(
+emoji
+);
+
+setTimeout(()=>{
+
+emoji.remove();
+
+},4000);
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
